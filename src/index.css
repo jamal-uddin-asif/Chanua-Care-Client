@@ -6,3 +6,50 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+
+  --color-border: var(--border);
+}
+
+/* Light Theme */
+:root {
+  --primary:  #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --secondary: #10b981;
+
+  --background: #f8fafc;
+  --surface: #ffffff;
+
+  --text: #111827;
+  --text-muted: #6b7280;
+
+  --border: #e5e7eb;
+}
+
+/* Dark Theme */
+.dark {
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+
+  --secondary: #34d399;
+
+  --background: #0f172a;
+  --surface: #1e293b;
+
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --border: #334155;
+}
