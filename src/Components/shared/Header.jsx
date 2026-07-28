@@ -2,17 +2,47 @@ import React from "react";
 import Container from "./Container";
 import { AiFillMedicineBox } from "react-icons/ai";
 import { LuScanSearch } from "react-icons/lu";
-import { Link } from "react-router";
+import { NavLink } from "react-router";
+import NavberLink from "./NavberLink";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaStethoscope,
+  FaCog,
+  FaEnvelope,
+} from "react-icons/fa";
+
+const linksItems = [
+  {
+    route: "/",
+    name: "Home",
+    icon: <FaHome />,
+  },
+  {
+    route: "/about-us",
+    name: "About Us",
+    icon: <FaInfoCircle />,
+  },
+  {
+    route: "/services",
+    name: "Services",
+    icon: <FaStethoscope />,
+  },
+  {
+    route: "/how-it-works",
+    name: "How It Works",
+    icon: <FaCog />,
+  },
+  {
+    route: "/contact",
+    name: "Contact Us",
+    icon: <FaEnvelope />,
+  },
+];
 
 const Header = () => {
 
-  const links = (
-    <>
-      <li><Link to={'/'}>Home</Link></li>
-      <li><Link to={'/about-us'}>About us</Link></li>
-      <li>Contact</li>
-    </>
-  );
+  const links = linksItems.map((link) => <NavberLink key={link.name} link={link} />);
 
   return (
     <>
@@ -50,9 +80,7 @@ const Header = () => {
       <nav className="bg-primary">
         <Container>
           <ul className="flex justify-center gap-8 py-2 text-surface">
-            {
-              links
-            }
+            {links}
           </ul>
         </Container>
       </nav>
