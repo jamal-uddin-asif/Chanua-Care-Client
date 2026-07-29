@@ -12,6 +12,10 @@ body {
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
 
+  /* Primary Gradient Colors */
+  --color-primary-gradient-start: var(--primary-gradient-start);
+  --color-primary-gradient-end: var(--primary-gradient-end);
+
   --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -26,6 +30,18 @@ body {
 :root {
   --primary:  #2563eb;
   --primary-hover: #1d4ed8;
+
+  /* Gradient Stops (Blue to Violet) */
+  --primary-gradient-start: #d0d4db;
+  --primary-gradient-end: #ae9ccc;
+
+  /* Preset Gradient Utility: bg-primary-gradient */
+  --background-image-primary-gradient: linear-gradient(
+    to right, 
+    var(--primary-gradient-start), 
+    var(--primary-gradient-end)
+  );
+
 
   --secondary: #10b981;
 
@@ -42,6 +58,10 @@ body {
 .dark {
   --primary: #3b82f6;
   --primary-hover: #60a5fa;
+
+  /* Dark Mode Gradient Stops (Brighter Blue to Purple) */
+  --primary-gradient-start: #3b82f6;
+  --primary-gradient-end: #a855f7;
 
   --secondary: #34d399;
 

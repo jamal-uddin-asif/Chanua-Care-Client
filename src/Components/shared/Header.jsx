@@ -88,7 +88,7 @@ const Header = () => {
         </Container>
       </div>
       {/* nav */}
-      <nav className="bg-primary border-2 border-border hidden md:block">
+      <nav className="bg-primary  hidden md:block">
         <Container>
           <ul className="flex justify-center gap-8 py-2 text-surface">
             {links}
