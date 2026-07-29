@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <div>
       <Container>
-        <div className="flex bg-background p-6 my-10 rounded-2xl gap-10">
+        <div className=" md:flex bg-background p-6 my-10 rounded-2xl gap-10">
           {/* left */}
     
             <div className="flex-1 py-10 space-y-4">
@@ -19,7 +19,7 @@ const Banner = () => {
                 from trusted pharmacies with confidence.
               </p>
               <form className="relative font-bold">
-                <input  type="text"  placeholder="Search Your Medicine.." className="bg-white outline-primary placeholder-secondary rounded-xl py w-full border-2 shadow border-border px-15 py-5 "/>
+                <input  type="text"  placeholder="Search..." className="bg-white outline-primary placeholder-secondary rounded-xl py w-full border-2 shadow border-border px-15 py-5 "/>
                 <span className="absolute top-5.5 left-6"><IoSearchOutline color="green" size={25}/></span>
                 <button className="bg-primary absolute top-1 right-1 bottom-1 rounded-xl text-surface flex items-center gap-2 px-2 py-4 ">Find medicine <FaArrowRightLong /></button>
               </form> 
@@ -27,7 +27,7 @@ const Banner = () => {
      
           {/* right  */}
           <div className="flex-1">
-            <img className="h-20 w-20" src="../../assets/Banner-medicine.png" alt="medicine" />
+            <img className="h-full w-full " src="/src/assets/Banner-medicine.png" alt="medicine" />
           </div>
         </div>
       </Container>
