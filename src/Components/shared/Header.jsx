@@ -12,12 +12,18 @@ import {
 } from "react-icons/fa";
 import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import MainLogo from "./MainLogo";
+import { FiPlus } from "react-icons/fi";
 
 const linksItems = [
   {
     route: "/",
     name: "Home",
     icon: <FaHome />,
+  },
+  {
+    route: "/add-medicine",
+    name: "Add Medicine",
+    icon: <FiPlus/>,
   },
   {
     route: "/about-us",

@@ -9,7 +9,6 @@ const Home = () => {
             <Banner/>
             <div className='grid grid-cols-3'>
 
-            <MedicineCard icon={<IoSearchOutline/>}/>
             </div>
             Home page here
         </div>
