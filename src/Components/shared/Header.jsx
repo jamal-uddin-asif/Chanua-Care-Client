@@ -13,6 +13,7 @@ import {
 import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import MainLogo from "./MainLogo";
 import { FiPlus } from "react-icons/fi";
+import { IoSearchOutline } from "react-icons/io5";
 
 const linksItems = [
   {
@@ -75,10 +76,13 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search your medicine"
-                className="bg-[#f1f1f1f1] text-secondary font-bold active:bg-surface outline-border py-2 px-3 rounded-full min-w-90 pl-16"
+                className="bg-surface  text-text  font-bold active:bg-surface outline-border py-3 shadow px-3 rounded-xl border min-w-90 pl-16"
               />
-              <div className="absolute top-2.5 left-7">
-                <LuScanSearch color="green" size={20} />
+              <div className="absolute top-3.5 left-7">
+                <LuScanSearch color="blue" size={23} />
+              </div>
+              <div className="flex justify-center items-center absolute bg-primary text-surface rounded-r-xl top-0 right-0 bottom-0 px-3">
+                <IoSearchOutline size={30}/>
               </div>
             </div>
             {/* right */}

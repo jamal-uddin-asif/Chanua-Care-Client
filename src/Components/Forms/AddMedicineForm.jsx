@@ -1,9 +1,13 @@
 import React from "react";
 import { Button } from "../ui/button";
+import { useForm } from "react-hook-form";
 
 const AddMedicineForm = () => {
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = () => {};
+  const onSubmit = (data) => {
+    console.log(data)
+  };
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -11,7 +15,7 @@ const AddMedicineForm = () => {
         Add New Medicine
       </h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className="flex gap-4">
           <div className="flex-1">
             <label className="block text-sm font-medium mb-1">
@@ -19,7 +23,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="text"
-              name="name"
+              {...register("name")}
               placeholder="e.g., Napa Extend"
               className="w-full border p-2 rounded"
               required
@@ -31,7 +35,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="text"
-              name="genericName"
+              {...register("genericName")}
               placeholder="e.g., Paracetamol"
               className="w-full border p-2 rounded"
             />
@@ -43,7 +47,7 @@ const AddMedicineForm = () => {
           <div className="flex-1">
             <label className="block text-sm font-medium mb-1">Category</label>
             <select
-              name="category"
+            {...register("category")}
               className="w-full border p-2 rounded bg-white"
               required
             >
@@ -61,7 +65,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="text"
-              name="dosage"
+              {...register("dosage")}
               placeholder="e.g., 665mg, 5ml"
               className="w-full border p-2 rounded"
             />
@@ -75,7 +79,7 @@ const AddMedicineForm = () => {
             <input
               type="number"
               step="0.01"
-              name="price"
+              {...register("price")}
               placeholder="0.00"
               className="w-full border p-2 rounded"
               required
@@ -87,7 +91,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="number"
-              name="quantity"
+               {...register("quantity")}
               placeholder="e.g., 100"
               className="w-full border p-2 rounded"
               required
@@ -99,7 +103,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="date"
-              name="expiryDate"
+               {...register("expiryDate")}
               className="w-full border p-2 rounded"
               required
             />
@@ -113,7 +117,7 @@ const AddMedicineForm = () => {
           </label>
           <input
             type="text"
-            name="manufacturer"
+             {...register("manufacturer")}
             placeholder="e.g., Pfizer, Square Pharma"
             className="w-full border p-2 rounded"
           />
@@ -126,7 +130,7 @@ const AddMedicineForm = () => {
           </label>
           <input
             type="file"
-            name="image"
+             {...register("image")}
             accept="image/*"
             // onChange={handleChange}
             className="w-full border p-2 rounded"
@@ -137,7 +141,7 @@ const AddMedicineForm = () => {
         <div>
           <label className="block text-sm font-medium mb-1">Description</label>
           <textarea
-            name="description"
+             {...register("description")}
             rows="3"
             placeholder="Usage instructions, side effects, or notes..."
             className="w-full border p-2 rounded"
