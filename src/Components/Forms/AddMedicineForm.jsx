@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
+import useImgBBLink from "@/Hooks/useImgBBLink";
+import toast from "react-hot-toast";
 
 const AddMedicineForm = () => {
   const { register, handleSubmit } = useForm();
+  const { loading, uploadPhoto } = useImgBBLink();
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const handleCreate = async (data) => {
+    const file = data.image[0];
+    if (!file) {
+      toast.error("File not found");
+      return;
+    }
+
+    const image = await uploadPhoto(file);
+
+    const medicineData = { ...data, image };
+    console.log({ medicineData });
   };
 
   return (
@@ -15,7 +27,10 @@ const AddMedicineForm = () => {
         Add New Medicine
       </h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit(handleCreate)}
+        className="flex flex-col gap-4"
+      >
         <div className="flex gap-4">
           <div className="flex-1">
             <label className="block text-sm font-medium mb-1">
@@ -47,7 +62,7 @@ const AddMedicineForm = () => {
           <div className="flex-1">
             <label className="block text-sm font-medium mb-1">Category</label>
             <select
-            {...register("category")}
+              {...register("category")}
               className="w-full border p-2 rounded bg-white"
               required
             >
@@ -91,7 +106,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="number"
-               {...register("quantity")}
+              {...register("quantity")}
               placeholder="e.g., 100"
               className="w-full border p-2 rounded"
               required
@@ -103,7 +118,7 @@ const AddMedicineForm = () => {
             </label>
             <input
               type="date"
-               {...register("expiryDate")}
+              {...register("expiryDate")}
               className="w-full border p-2 rounded"
               required
             />
@@ -117,7 +132,7 @@ const AddMedicineForm = () => {
           </label>
           <input
             type="text"
-             {...register("manufacturer")}
+            {...register("manufacturer")}
             placeholder="e.g., Pfizer, Square Pharma"
             className="w-full border p-2 rounded"
           />
@@ -130,7 +145,7 @@ const AddMedicineForm = () => {
           </label>
           <input
             type="file"
-             {...register("image")}
+            {...register("image")}
             accept="image/*"
             // onChange={handleChange}
             className="w-full border p-2 rounded"
@@ -141,7 +156,7 @@ const AddMedicineForm = () => {
         <div>
           <label className="block text-sm font-medium mb-1">Description</label>
           <textarea
-             {...register("description")}
+            {...register("description")}
             rows="3"
             placeholder="Usage instructions, side effects, or notes..."
             className="w-full border p-2 rounded"
