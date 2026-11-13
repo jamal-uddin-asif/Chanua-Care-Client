@@ -18,7 +18,8 @@ const AddMedicineForm = () => {
     const image = await uploadPhoto(file);
 
     const medicineData = { ...data, image };
-    console.log({ medicineData });
+    
+    
   };
 
   return (
