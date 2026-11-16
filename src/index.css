@@ -46,7 +46,7 @@ body {
     var(--primary-gradient-end)
   );
 
-  --secondary: #10b981;
+  --secondary:  #10b981; 
 
   --background: #f8fafc;
   --surface: #ffffff;

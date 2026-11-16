@@ -3,10 +3,20 @@ import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import useImgBBLink from "@/Hooks/useImgBBLink";
 import toast from "react-hot-toast";
+import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
+import { useMutation } from "@tanstack/react-query";
 
 const AddMedicineForm = () => {
   const { register, handleSubmit } = useForm();
   const { loading, uploadPhoto } = useImgBBLink();
+  const axiosInstance = useAxiosInstance();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data) => {
+      return await axiosInstance.post("/medicine", data);
+    },
+    onSuccess: () => toast.success("Medicine created"),
+  });
 
   const handleCreate = async (data) => {
     const file = data.image[0];
@@ -18,8 +28,14 @@ const AddMedicineForm = () => {
     const image = await uploadPhoto(file);
 
     const medicineData = { ...data, image };
-    
-    
+
+    try {
+      const res = mutate(medicineData)
+      console.log(res)
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -166,9 +182,10 @@ const AddMedicineForm = () => {
 
         <Button
           type="submit"
-          className="bg-primary text-white font-semibold py-2 px-4 rounded hover:bg-primary-hover transition"
+          disabled={isPending}
+          className={`bg-primary text-white font-semibold py-2 px-4 rounded hover:bg-primary-hover transition disabled:bg-gray-300`}
         >
-          Add Medicine
+          {isPending? 'Posting..': 'Add medicine'}
         </Button>
       </form>
     </div>
