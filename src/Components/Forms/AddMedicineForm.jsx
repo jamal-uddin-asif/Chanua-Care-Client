@@ -5,6 +5,7 @@ import useImgBBLink from "@/Hooks/useImgBBLink";
 import toast from "react-hot-toast";
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
 import { useMutation } from "@tanstack/react-query";
+import AddMedicineBtn from "../Buttons/AddMedicineBtn";
 
 const AddMedicineForm = () => {
   const { register, handleSubmit } = useForm();
@@ -180,13 +181,14 @@ const AddMedicineForm = () => {
           ></textarea>
         </div>
 
-        <Button
+        {/* <Button
           type="submit"
           disabled={isPending}
           className={`bg-primary text-white font-semibold py-2 px-4 rounded hover:bg-primary-hover transition disabled:bg-gray-300`}
         >
           {isPending? 'Posting..': 'Add medicine'}
-        </Button>
+        </Button> */}
+        <AddMedicineBtn isPending={isPending}/>
       </form>
     </div>
   );
