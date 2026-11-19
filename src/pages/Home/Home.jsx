@@ -15,12 +15,12 @@ const Home = () => {
       setLoading(true) //Loading start!
       const res = await axiosInstance.get('/medicine')
       if(res.data){
-        setMedicines([...medicines, res.data])
+        setMedicines(res.data)
         setLoading(false) //Loading stop!
       }
        setLoading(false) //Loading stop!
     }
-    fetchMedicine()
+     fetchMedicine()
   }, [axiosInstance])
 
 

@@ -27,8 +27,7 @@ const Banner = () => {
               </form> 
               
               <div>
-                 <AddMedicineDialog/>
-   
+                 {/* <AddMedicineDialog/> */}
               </div>
             </div>
      
