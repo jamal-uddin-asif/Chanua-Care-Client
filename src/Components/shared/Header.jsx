@@ -14,6 +14,7 @@ import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import MainLogo from "./MainLogo";
 import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const linksItems = [
   {
@@ -87,12 +88,12 @@ const Header = () => {
             </div>
             {/* right */}
             <div>
-              <button className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200">
+              <Link to={'/login'} className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200">
                 Login
-              </button>
-              <button className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
+              </Link>
+              <Link to={'/register'} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
                 Get Start
-              </button>
+              </Link>
             </div>
           </div>
         </Container>

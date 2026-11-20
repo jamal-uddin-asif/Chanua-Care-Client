@@ -3,24 +3,45 @@ import RootLayout from "../Layouts/RootLayout";
 import Home from "../pages/Home/Home";
 import AboutUs from "../pages/AboutUs";
 import AddMedicine from "@/pages/AddMedicine";
+import MedicineDetails from "@/pages/Medicine/MedicineDetails";
+import PrivateRoute from "./PrivateRoute";
+import Login from "@/pages/Auth/Login/Login";
+import Register from "@/pages/Auth/Register/Register";
 
 export const route = createBrowserRouter([
-    {
-        path: '/',
-        Component: RootLayout,
-        children: [
-            {
-                index: true,
-                Component: Home
-            },
-            {
-                path: '/add-medicine',
-                Component: AddMedicine
-            },
-            {
-                path: '/about-us',
-                Component: AboutUs
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    Component: RootLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/add-medicine",
+        element: (
+          <PrivateRoute>
+            <AddMedicine />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/about-us",
+        Component: AboutUs,
+      },
+      {
+        path: "/medicine/:id",
+        element: <PrivateRoute><MedicineDetails/></PrivateRoute>
+      },
+    //   auth route
+      {
+        path: "/login",
+        element: <Login/>
+      },
+      {
+        path: "/register",
+        element: <Register/>
+      },
+    ],
+  },
+]);
