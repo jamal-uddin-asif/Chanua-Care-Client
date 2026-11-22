@@ -1,16 +1,14 @@
-import Container from "@/Components/shared/Container";
 import MainLogo from "@/Components/shared/MainLogo";
-import { auth } from "@/Firebase/firebase.config";
+import { AuthContext } from "@/Context/AuthContext";
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router";
 
 const Register = () => {
   const location = useLocation();
   const axiosInstace = useAxiosInstance();
-  console.log(location);
+  const { createUser } = useContext(AuthContext);
 
   const handleRegistretion = async (e) => {
     e.preventDefault();
@@ -24,10 +22,10 @@ const Register = () => {
 
     const userData = { FName, LName, email, password, blod, age };
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      if(userCredential.user){
-        const res = await axiosInstace.post("/users", userData);
-        toast.success('Firebase user created')
+      const userCredential = await createUser(email, password);
+      if (userCredential.user) {
+        toast.success("Firebase user created with Context api");
+        await axiosInstace.post("/users", userData);
       }
     } catch (error) {
       console.log(error);
