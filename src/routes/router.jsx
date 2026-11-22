@@ -5,8 +5,8 @@ import AboutUs from "../pages/AboutUs";
 import AddMedicine from "@/pages/AddMedicine";
 import MedicineDetails from "@/pages/Medicine/MedicineDetails";
 import PrivateRoute from "./PrivateRoute";
-import Login from "@/pages/Auth/Login/Login";
-import Register from "@/pages/Auth/Register/Register";
+import Register from "@/pages/Auth/Register/Register.jsx";
+import Login from "@/pages/Auth/SignIn/Login";
 
 export const route = createBrowserRouter([
   {
@@ -31,16 +31,20 @@ export const route = createBrowserRouter([
       },
       {
         path: "/medicine/:id",
-        element: <PrivateRoute><MedicineDetails/></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <MedicineDetails />
+          </PrivateRoute>
+        ),
       },
-    //   auth route
+      //   auth route
       {
         path: "/login",
-        element: <Login/>
+        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register/>
+        element: <Register />,
       },
     ],
   },
