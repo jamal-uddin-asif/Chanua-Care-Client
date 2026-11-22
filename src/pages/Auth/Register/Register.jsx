@@ -1,7 +1,10 @@
 import Container from "@/Components/shared/Container";
 import MainLogo from "@/Components/shared/MainLogo";
+import { auth } from "@/Firebase/firebase.config";
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React from "react";
+import toast from "react-hot-toast";
 import { useLocation } from "react-router";
 
 const Register = () => {
@@ -21,8 +24,11 @@ const Register = () => {
 
     const userData = { FName, LName, email, password, blod, age };
     try {
-      const res = await axiosInstace.post("/users", userData);
-      console.log(res);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      if(userCredential.user){
+        const res = await axiosInstace.post("/users", userData);
+        toast.success('Firebase user created')
+      }
     } catch (error) {
       console.log(error);
     }

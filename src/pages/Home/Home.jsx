@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Banner from "../../Components/Home/Banner";
 
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
 import AllMedicines from "./medicines/AllMedicines";
+import { AuthContext } from "@/Context/AuthContext";
 
 const Home = () => {
   
   const axiosInstance = useAxiosInstance();
   const [medicines, setMedicines] = useState([])
   const [loading, setLoading] = useState(false)
+
   
   useEffect(()=>{
     async function fetchMedicine () {
