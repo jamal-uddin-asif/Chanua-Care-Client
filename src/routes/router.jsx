@@ -5,8 +5,9 @@ import AboutUs from "../pages/AboutUs";
 import AddMedicine from "@/pages/AddMedicine";
 import MedicineDetails from "@/pages/Medicine/MedicineDetails";
 import PrivateRoute from "./PrivateRoute";
-import Register from "@/pages/Auth/Register/Register.jsx";
 import Login from "@/pages/Auth/SignIn/Login";
+import AuthLayout from "@/Layouts/AuthLayout";
+import RegistretionForm from "@/pages/Auth/Register/RegistretionForm";
 
 export const route = createBrowserRouter([
   {
@@ -39,12 +40,18 @@ export const route = createBrowserRouter([
       },
       //   auth route
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "/auth/register",
+            element: <RegistretionForm/>,
+          },
+          {
+            path: "/auth/login",
+            element: <Login />,
+          },
+        ],
       },
     ],
   },

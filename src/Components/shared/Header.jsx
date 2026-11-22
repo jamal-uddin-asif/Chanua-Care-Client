@@ -88,10 +88,10 @@ const Header = () => {
             </div>
             {/* right */}
             <div>
-              <Link to={'/login'} className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200">
+              <Link to={'/auth/login'} className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200">
                 Login
               </Link>
-              <Link to={'/register'} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
+              <Link to={'/auth/register'} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
                 Get Start
               </Link>
             </div>
