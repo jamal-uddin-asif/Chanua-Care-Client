@@ -1,6 +1,29 @@
 import MainLogo from "@/Components/shared/MainLogo";
+import { AuthContext } from "@/Context/AuthContext";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
+
+  const {signInUser} = useContext(AuthContext)
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      const userCredential = await signInUser(email, password);
+      if (userCredential) {
+        toast.success("user login successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+    }
+  };
+
   return (
     <div className=" flex-1">
       <div className="flex justify-end">
@@ -14,7 +37,7 @@ const Login = () => {
           </p>
         </div>
 
-        <form >
+        <form onSubmit={handleLogin}>
           <div className="space-y-2 ">
 
             {/* email area  */}
@@ -62,7 +85,6 @@ const Login = () => {
               </div>
 
               <div>
-                {/* age area */}
                 <div>
                   <p className="text-sm font-semibold">
                     Is your age 18 + or Not
@@ -89,7 +111,7 @@ const Login = () => {
             <div className=" flex justify-end">
               <input
                 type="submit"
-                value="Create account"
+                value="Login"
                 className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold hover:cursor-pointer"
               />
             </div>

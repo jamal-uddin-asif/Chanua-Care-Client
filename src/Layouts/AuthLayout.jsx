@@ -8,8 +8,8 @@ const AuthLayout = () => {
     <Container>
       <div className={` md:flex ${location.pathname === '/auth/register' && 'flex-row-reverse'} gap-4  justify-between h-screen `}>
         {/* left side  */}
-        <div className="hidden md:flex bg-primary rounded-2xl  flex-col justify-center items-center my-4 flex-1">
-          <div className="relative">
+        <div className="hidden overflow-hidden md:flex bg-primary rounded-2xl  flex-col justify-center items-center my-4 flex-1">
+          <div className="relative ">
             <img
               className="max-w-[450px] "
               src="https://i.ibb.co.com/5XqRCx52/dashboard.webp"
