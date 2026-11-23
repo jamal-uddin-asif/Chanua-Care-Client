@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "./Container";
 import { AiFillMedicineBox } from "react-icons/ai";
 import { LuScanSearch } from "react-icons/lu";
@@ -15,6 +15,8 @@ import MainLogo from "./MainLogo";
 import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import { AuthContext } from "@/Context/AuthContext";
+import toast from "react-hot-toast";
 
 const linksItems = [
   {
@@ -25,7 +27,7 @@ const linksItems = [
   {
     route: "/add-medicine",
     name: "Add Medicine",
-    icon: <FiPlus/>,
+    icon: <FiPlus />,
   },
   {
     route: "/about-us",
@@ -50,6 +52,8 @@ const linksItems = [
 ];
 
 const Header = () => {
+  const { user, LogOutUser } = useContext(AuthContext);
+
   const links = linksItems.map((link) => (
     <NavberLink key={link.name} link={link} />
   ));
@@ -63,7 +67,10 @@ const Header = () => {
           <div className="  p-8  flex  md:flex-row justify-between items-center">
             {/* left */}
             <div className="flex items-center gap-2  ">
-              <div onClick={() => setManuToggled(!manuToggled)} className="md:hidden">
+              <div
+                onClick={() => setManuToggled(!manuToggled)}
+                className="md:hidden"
+              >
                 {manuToggled ? (
                   <RiMenuFold2Fill size={28} />
                 ) : (
@@ -83,17 +90,36 @@ const Header = () => {
                 <LuScanSearch color="blue" size={23} />
               </div>
               <div className="flex justify-center items-center absolute bg-primary text-surface rounded-r-xl top-0 right-0 bottom-0 px-3">
-                <IoSearchOutline size={30}/>
+                <IoSearchOutline size={30} />
               </div>
             </div>
             {/* right */}
             <div>
-              <Link to={'/auth/login'} className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200">
-                Login
-              </Link>
-              <Link to={'/auth/register'} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
-                Get Start
-              </Link>
+              {user ? (
+                <>
+                  <button onClick={()=> {
+                    LogOutUser();
+                    toast.success('SignOut successful')
+                  }} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
+                    SignOut
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to={"/auth/login"}
+                    className="border-2  border-border rounded-xl hover:bg-secondary p-2 font-bold hover:text-surface mr-2 transition-all duration-200"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to={"/auth/register"}
+                    className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold"
+                  >
+                    Get Start
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </Container>
@@ -112,8 +138,16 @@ const Header = () => {
         className={`md:hidden bg-background h-screen min-w-70 text-xl  absolute ease-in-out duration-300 ${manuToggled ? "left-0 top-0" : " -left-69 top-0 "}`}
       >
         <div className="flex justify-between py-3 mx text-primary items-center ">
-          <div> <AiFillMedicineBox color="" size={40}/></div>
-          <div onClick={()=>setManuToggled(!manuToggled)} className="hover:bg-gray-300 p-1 rounded-xl"><RiMenuFoldFill size={28}/></div>
+          <div>
+            {" "}
+            <AiFillMedicineBox color="" size={40} />
+          </div>
+          <div
+            onClick={() => setManuToggled(!manuToggled)}
+            className="hover:bg-gray-300 p-1 rounded-xl"
+          >
+            <RiMenuFoldFill size={28} />
+          </div>
         </div>
         <ul className="px-2 text-text  flex flex-col justify-start ">
           {links}
