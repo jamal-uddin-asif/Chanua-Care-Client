@@ -3,11 +3,12 @@ import Banner from "../../Components/Home/Banner";
 
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
 import AllMedicines from "./medicines/AllMedicines";
-import { AuthContext } from "@/Context/AuthContext";
+import { useAxiosSecure } from "@/Hooks/useAxiosSecure";
 
 const Home = () => {
   
   const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure()
   const [medicines, setMedicines] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -15,7 +16,7 @@ const Home = () => {
   useEffect(()=>{
     async function fetchMedicine () {
       setLoading(true) //Loading start!
-      const res = await axiosInstance.get('/medicine')
+      const res = await axiosSecure.get('/medicine')
       if(res.data){
         setMedicines(res.data)
         setLoading(false) //Loading stop!

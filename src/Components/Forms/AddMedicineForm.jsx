@@ -6,15 +6,17 @@ import toast from "react-hot-toast";
 import { useAxiosInstance } from "@/Hooks/useAxiosInstance";
 import { useMutation } from "@tanstack/react-query";
 import AddMedicineBtn from "../Buttons/AddMedicineBtn";
+import { useAxiosSecure } from "@/Hooks/useAxiosSecure";
 
 const AddMedicineForm = () => {
   const { register, handleSubmit } = useForm();
   const { loading, uploadPhoto } = useImgBBLink();
   const axiosInstance = useAxiosInstance();
+  const axiosSecure = useAxiosSecure()
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
-      return await axiosInstance.post("/medicine", data);
+      return await axiosSecure.post("/medicine", data);
     },
     onSuccess: () => toast.success("Medicine created"),
   });

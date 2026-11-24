@@ -1,11 +1,11 @@
-import React from "react";
+import { AuthContext } from "@/Context/AuthContext";
+import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
-  const user = false;
-  const loading = true;
+  const {user , loading} = useContext(AuthContext)
 
   if(loading) return <div className={'flex justify-center items-center h-screen  py-4 '}><p className="animate-spin  text-4xl">🎆</p></div>
 
