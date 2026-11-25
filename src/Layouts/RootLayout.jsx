@@ -1,14 +1,18 @@
-import React from 'react';
-import Header from '../Components/shared/Header';
-import { Outlet } from 'react-router';
+import React from "react";
+import Header from "../Components/shared/Header";
+import { Outlet, useNavigate, useNavigation } from "react-router";
 
 const RootLayout = () => {
-    return (
-        <>
-            <Header/>
-            <Outlet/>
-        </>
-    );
+  const navigate = useNavigate();
+  const navigation = useNavigation();
+
+  console.log({ navigate, navigation });
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
 };
 
 export default RootLayout;

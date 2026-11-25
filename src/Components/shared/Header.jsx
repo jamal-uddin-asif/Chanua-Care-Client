@@ -14,7 +14,7 @@ import { RiMenuFold2Fill, RiMenuFoldFill } from "react-icons/ri";
 import MainLogo from "./MainLogo";
 import { FiPlus } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "@/Context/AuthContext";
 import toast from "react-hot-toast";
 
@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="bg-background relative">
+      <div className="bg-background  relative">
         <Container>
           <div className="  p-8  flex  md:flex-row justify-between items-center">
             {/* left */}
@@ -97,10 +97,13 @@ const Header = () => {
             <div>
               {user ? (
                 <>
-                  <button onClick={()=> {
-                    LogOutUser();
-                    toast.success('SignOut successful')
-                  }} className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold">
+                  <button
+                    onClick={() => {
+                      LogOutUser();
+                      toast.success("SignOut successful");
+                    }}
+                    className="bg-primary hover:bg-transparent hover:text-text border-2 rounded-xl border-border p-2 text-surface font-bold"
+                  >
                     SignOut
                   </button>
                 </>
@@ -125,7 +128,7 @@ const Header = () => {
         </Container>
       </div>
       {/* nav */}
-      <nav className="bg-primary  hidden md:block">
+      <nav className="bg-primary   hidden md:block">
         <Container>
           <ul className="flex justify-center gap-8 py-2 text-surface">
             {links}
@@ -135,7 +138,7 @@ const Header = () => {
 
       {/* Mobile Nav */}
       <div
-        className={`md:hidden bg-background h-screen min-w-70 text-xl  absolute ease-in-out duration-300 ${manuToggled ? "left-0 top-0" : " -left-69 top-0 "}`}
+        className={`md:hidden shadow-2xl bg-background h-screen max-w-70 fixed top-0 bottom-0  z-50 text-xl transition-all ease-in-out duration-400  ${manuToggled ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex justify-between py-3 mx text-primary items-center ">
           <div>
@@ -149,12 +152,26 @@ const Header = () => {
             <RiMenuFoldFill size={28} />
           </div>
         </div>
-        <ul className="px-2 text-text  flex flex-col justify-start ">
-          {links}
+        <ul className="px-2 text-text  flex flex-col justify-start  ">
+          {/* {links} */}
+
+          {linksItems?.map((link) => (
+            <li>
+              <NavLink to={link.route} className={'flex items-center gap-2 bg-background  border border-border p-2 '}><span className=" border-2 p-2 rounded-sm">{link.icon}</span>{link.name}</NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
   );
 };
+
+{
+  /* {
+    route: "/",
+    name: "Home",
+    icon: <FaHome />,
+  }, */
+}
 
 export default Header;
